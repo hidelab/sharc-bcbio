@@ -1,6 +1,13 @@
+# BCBIO at sharc
+
 bcbio-nextgen, github URL, is installed on `sharc`.
 
 It is installed in `/usr/local/community/bcbio-nextgen/`
+
+Note that you cannot access this directory from the sharc login
+node.
+You must open a session on a worker node first,
+for example, by running `qrshx`.
 
 There will be several versions.
 

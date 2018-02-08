@@ -56,7 +56,6 @@ of running the [RNAseq test example from bcbio's documentation,](http://bcbio-ne
 
 Installation configuration file is at
 `/usr/local/community/bcbio-nextgen/2017-08/data/config/install-params.yaml`.
-It contains the descript
 
 Global Configuration file `bcbio_system.yaml` is at blah
 

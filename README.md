@@ -25,7 +25,7 @@ able to use the module system to add it to your `PATH` as well:
 
     module add blah blah blah
 
-# A very brief intro
+## A very brief intro
 
 More comprehensive documentation is available at
  http://bcbio-nextgen.readthedocs.io/en/latest/contents/testing.html
@@ -47,16 +47,21 @@ Then you can run the analysis:
 # Test materials
 
 The `test-rnaseq` subdirectory of
- `/usr/local/community/bcbio-nextgen/2017-08` contains a the complete results
+ `/usr/local/community/bcbio-nextgen/2017-08` contains
+ the complete results
 of running the [RNAseq test example from bcbio's documentation,](http://bcbio-nextgen.readthedocs.io/en/latest/contents/testing.html#rnaseq-example).
 
 
 # System configuration
 
+Installation configuration file is at
+`/usr/local/community/bcbio-nextgen/2017-08/data/config/install-params.yaml`.
+It contains the descript
 
-Configuration file `bcbio_system.yaml` is at blah
+Global Configuration file `bcbio_system.yaml` is at blah
 
-Genomes:
+Genomes: run `bcbio_nextgen.py upgrade -h` to generate the
+genome list:
 
 Aligners:
 

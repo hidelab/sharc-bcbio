@@ -59,8 +59,21 @@ Installation configuration file is at
 
 Global Configuration file `bcbio_system.yaml` is at blah
 
-Genomes: run `bcbio_nextgen.py upgrade -h` to generate the
-genome list:
+Genomes: installed genomes are in the `genomes` directory.
+To see a list:
+
+    (cd /usr/local/community/bcbio-nextgen/2017-08/data/genomes; ls -d */*)
+
+As of 2018-02 this is:
+
+    Drerio_Zebrafish/GRCz10
+    Hsapiens/GRCh37
+    Hsapiens/hg38
+    Mmusculus/mm10
+    Mmusculus/mm9
+
+Other genomes can be installed,
+run `bcbio_nextgen.py upgrade -h` to see the list of possible genomes.
 
 Aligners:
 

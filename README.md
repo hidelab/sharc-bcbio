@@ -75,6 +75,9 @@ As of 2018-02 this is:
     Mmusculus/mm10
     Mmusculus/mm9
 
+Running `bcbio_setup_genome.py`
+(no arguments) also produces a similar list.
+
 Other genomes can be installed,
 run `bcbio_nextgen.py upgrade -h` to see the list of possible genomes.
 

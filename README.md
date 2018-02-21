@@ -1,8 +1,10 @@
 # BCBIO at sharc
 
-bcbio-nextgen, github URL, is installed on `sharc`.
+bcbio-nextgen,
+https://github.com/chapmanb/bcbio-nextgen,
+is installed on `sharc`.
 
-It is installed in `/usr/local/community/bcbio-nextgen/`
+It is installed in `/usr/local/community/bcbio-nextgen/`.
 
 Note that you cannot access this directory from the sharc login
 node.

@@ -99,11 +99,12 @@ work_dir='/path/to/your/project/folder'
 
 #Seq.Reads file directories
 r1_files=$work_dir/locationofsrafiles
-#If you have paired reads remove hash
+#If you have paired reads remove hash on line below
 #r2_files=$work_dir/locationofsrafiles
 
 #Read in seq reads
 r1=($(find $r1_files -type f -name "*.gz"|sort -n))
+#If you have paired reads remove hash on line below
 #r2=($(find $r2_files -type f -name "*.gz"|sort -n))
 
 #Initialise the main analysis

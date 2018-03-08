@@ -16,7 +16,7 @@
 #$ -j y
 #$ -l h_rt=100:00:00
 #$ -m bea
-#$ -M youremailaddress@sheffield.ac.uk
+#$ -M youremailaddress@whatever.something
 
 path/to/sratoolkit.2.8.2-1-centos_linux64/bin/prefetch.2.8.2 thing.sra thing2.sra thingn.sra
 

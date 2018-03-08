@@ -64,7 +64,7 @@ and edit if you so wish
 
 OR 
 
-type `nano myanalysisname-template.yaml` (remember, name it the same as the csv)
+In your project folder type `nano myanalysisname-template.yaml` (remember, name it the same as the csv)
 
 and paste:
 ```

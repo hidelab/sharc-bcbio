@@ -83,7 +83,7 @@ We removed adaptor trimming because it wasn't necessary and actually took a lot 
 
 ### Creating batch script to run bcbio
 
-Now you need to set up your SGE file that will direct bcbio to the samples and what to do with them. 
+Now you need to set up your SGE file that will direct bcbio to the samples and tell it what to do with them. 
 
 Staying in your project folder, type `nano youranalysisname.SGE`, and paste:                              
 ```

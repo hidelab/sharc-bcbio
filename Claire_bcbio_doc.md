@@ -25,8 +25,9 @@ path/to/sratoolkit.2.8.2-1-centos_linux64/bin/fastq-dump.2.8.2 --gzip thing.sra 
 
 The first line downloads the sra files from NCBI, and the second line converts these to fastq and zips them in one go. Obviously edit this to the correct file name for the version you are using. 
 
-NB.1 It is particularly important to include "--gzip" if you will be using up a lot of space. Unzipped Fastq files can be very large and can fill you system's memory very quickly. These 73 sra files and 73 fastq.gz files took up 803GB of space in total.
-NB.2 This step will take a really long time. Likely hours if not days depending on the number of files you have. Please bear that in mind when planning your experiment. 
+**NB.1** It is particularly important to include "--gzip" if you will be using up a lot of space. Unzipped Fastq files can be very large and can fill you system's memory very quickly. These 73 sra files and 73 fastq.gz files took up 803GB of space in total.
+
+**NB.2** This step will take a really long time. Likely hours if not days depending on the number of files you have. Please bear that in mind when planning your experiment. 
 
 5) Once you have your fastq files, you can start setting up your bcbio input. The easiest thing to start off with is the .csv file of the metadata. This can be created in anything that can save as .csv, I use Excel because it's easy and I'm a heathen.
 

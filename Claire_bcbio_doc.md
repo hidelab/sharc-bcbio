@@ -29,7 +29,11 @@ The first line downloads the sra files from NCBI, and the second line converts t
 
 **NB.2** This step will take a really long time. Likely hours if not days depending on the number of files you have. Please bear that in mind when planning your experiment. 
 
-5) Once you have your fastq files, you can start setting up your bcbio input. The easiest thing to start off with is the .csv file of the metadata. This can be created in anything that can save as .csv, I use Excel because it's easy and I'm a heathen.
+## Setting up bcbio 
+Bcbio will need to be installed on your system. At the University of Sheffield this is already installed so don't try and install anything. If you are working on Iceberg you will need to load the bcbio module using `module load apps/gcc/5.2/bcbio/0.9.6a`. If you are using sharc then my example below should work. For non-University of Sheffielders talk to your Research Software Engineering group and ask their advice.
+
+### Creating csv metadata file
+Once you have your fastq files, you can start setting up your bcbio input. The easiest thing to start off with is the .csv file of the metadata. This can be created in anything that can save as .csv, I use Excel because it's easy and I'm a heathen.
 
 The .csv file requires four columns of information. The headers must be as follows "samplename", "description", "phenotype", "batch".
 * Sample name can be the file name (the SRR code in this example). 
@@ -39,9 +43,10 @@ The .csv file requires four columns of information. The headers must be as follo
 
 The next bit is important - **YOU MUST SAVE YOUR FILE AS AN MS-DOS CSV OTHERWISE IT CAN'T BE READ PROPERLY AND YOU GET RANDOM SYMBOLS ALL OVER THE SHOP**. 
 
-NB - pick one consistent analysis name to name all of your files. It will make it easier to keep track.
+**NB** - pick one consistent analysis name to name all of your files. It will make it easier to keep track.
 
-6) Now you have your csv file you need to put it into the right folder. I won't go into how to upload files into your HPC storage but you can find what you need here https://www.sheffield.ac.uk/wrgrid/using/access. 
+### Create project folder
+Now you have your csv file you need to put it into the right folder. I won't go into how to upload files into your HPC storage but you can find what you need here https://www.sheffield.ac.uk/wrgrid/using/access. 
 
 Set up a folder for your project that ISN'T named the same as the analysis name you are using for your files. E.g. I have a project folder called "PD_RNAseq" where as my files are named "PD_bcbio.whatever". This is because bcbio will create a new folder with the same name as the file names later on, and it will get confusing if it's the same as the project folder. 
 
@@ -50,7 +55,8 @@ From now on "project folder" means the folder where you are storing your project
 
 Put your csv file in your project folder.
 
-7) Not many words rhyme with camel. EXCEPT FOR YAML! You need a .yaml template file to tell bcbio what to do. There are two ways to get a yaml template - either download one or make your own. I decided to download it once and edit it for my preferences, and now I use that for everything.
+### Creating template .yaml file
+Not many words rhyme with camel. EXCEPT FOR YAML! You need a .yaml template file to tell bcbio what to do. There are two ways to get a yaml template - either download one or make your own. I decided to download it once and edit it for my preferences, and now I use that for everything.
 
 To download `path/to/bcbio_nextgen.py -w template illumina-rnaseq youranalysisname`
 and edit if you so wish
@@ -74,7 +80,9 @@ upload:
 ```
 We removed adaptor trimming because it wasn't necessary and actually took a lot of time.
 
-8) Now you need to set up your SGE file that will direct bcbio to the samples and what to do with them. 
+### Creating batch script to run bcbio
+
+Now you need to set up your SGE file that will direct bcbio to the samples and what to do with them. 
 
 Staying in your project folder, type `nano youranalysisname.SGE`, and paste:                              
 ```
@@ -110,4 +118,5 @@ cd $work_dir/youranalysisname/work
 ```
 You may have other options you need at the top of your SGE file. This will depend a lot on the system you are using.
 
-9) When you have "qsub"ed this file it will do a number of things. First it will make another yaml file which is a combination of the yaml template and the csv file - essentially saying "do template to every file". This is also when it creates a new folder in your project folder called "youranalysisname" where it will create a config, work, and final folder. Config holds your yamls and csv, work is where it does the processing, and final is where it spits out the output files
+### And now we wait...
+When you have "qsub"ed this file it will do a number of things. First it will make another yaml file which is a combination of the yaml template and the csv file - essentially saying "do template to every file". This is also when it creates a new folder in your project folder called "youranalysisname" where it will create a config, work, and final folder. Config holds your yamls and csv, work is where it does the processing, and final is where it spits out the output files

@@ -118,7 +118,7 @@ echo "PERFOMING ANALYSIS"
 cd $work_dir/youranalysisname/work
 /usr/local/community/bcbio-nextgen/2017-08/tool/bin/bcbio_nextgen.py -n 8 ../config/youranalysisname.yaml
 ```
-You may have other options you need at the top of your SGE file. This will depend a lot on the system you are using.
+You may have other options you need at the top of your SGE file. This will depend a lot on the system you are using. Additionally if you are not at sheffield the path to `bcbio_nextgen.py` will be different.
 
 ### And now we wait...
 When you have "qsub"ed this file it will do a number of things. First it will make another yaml file which is a combination of the yaml template and the csv file - essentially saying "do template to every file". This is also when it creates a new folder in your project folder called "youranalysisname" where it will create a config, work, and final folder. Config holds your yamls and csv, work is where it does the processing, and final is where it spits out the output files

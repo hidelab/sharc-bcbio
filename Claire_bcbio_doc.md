@@ -50,8 +50,9 @@ Now you have your csv file you need to put it into the right folder. I won't go 
 
 Set up a folder for your project that ISN'T named the same as the analysis name you are using for your files. E.g. I have a project folder called "PD_RNAseq" where as my files are named "PD_bcbio.whatever". This is because bcbio will create a new folder with the same name as the file names later on, and it will get confusing if it's the same as the project folder. 
 
-From now on "project folder" means the folder where you are storing your project (duh)
-"youranalysisname" is the name you chose to call your files
+From now on:
+* "project folder" means the folder where you are storing your project (duh)
+* "youranalysisname" is the name you chose to call your files
 
 Put your csv file in your project folder.
 

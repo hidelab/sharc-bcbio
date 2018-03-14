@@ -9,6 +9,7 @@
 3) This brings up a slightly clunky user interface where you can set the download location ("Default Import Path"). Use the directional keys to highlight this box, or press 5. Then either navigate through the directories in the "directories:" box or left-click "Goto" to input your own path name. Press OK and then press 6, Enter, and 7 to save and quit.
 4) Navigate to folder you have just set to download files to and write small script to run sra-toolkit. 
 
+# This Example for SRA Toolkit is not currently stable as fastq-dump --gzip corrupts the fastq file. See alternate method below
 ```
 #!/bin/bash
 #$ -l rmem=4G -l mem=4G
@@ -28,6 +29,29 @@ The first line downloads the sra files from NCBI, and the second line converts t
 **NB.1** It is particularly important to include "--gzip" if you will be using up a lot of space. Unzipped Fastq files can be very large and can fill you system's memory very quickly. These 73 sra files and 73 fastq.gz files took up 803GB of space in total.
 
 **NB.2** This step will take a really long time. Likely hours if not days depending on the number of files you have. Please bear that in mind when planning your experiment. If you are short on time, you can split these two processes apart and run the files in batches.
+
+# Alternative method of converting and zipping fastq.gz files
+If you run bcbio and later get an error saying something about "unexpected end of file" "fix your fastq file" "file is truncated" or something to that effect, it is because fastq-dump with the gzip condition is currently buggy. This has been submitted as an issue on the sra github. Instead, you will need to run the following loop:
+
+```
+#!/bin/bash
+#$ -l rmem=40G -l mem=40G
+#$ -pe openmp 1
+#$ -j y
+#$ -l h_rt=48:00:00
+#$ -m bea
+#$ -M cmgreen1@sheffield.ac.uk
+#$ -P hidelab
+
+FILES=/path/to/sra/files/*[0-1].sra
+
+    for f in $FILES
+    do
+      	/shared/hidelab2/user/mdp15cmg/TDP-43/sratoolkit.2.8.2-1-centos_linux64/bin/fastq-dump.2.8.2 $f
+        gzip *fastq
+    done
+```
+I have created 5 bash scripts to cover files ending `[0-1]`, `[2-3]`, `[4-5]`,`[6-7]`, and `[8-9]` as this process is quite lengthy. This loop will take the file, apply the latest fastq-dump, and zip your file with a separate gzip command. Thankfully you should only have 5 unzipped fastq files in your workspace at any one time, but that could add up to something like 100GB so only split the bash files for as much space as you can afford
 
 ## Setting up bcbio 
 Bcbio will need to be installed on your system. At the University of Sheffield this is already installed so don't try and install anything. If you are working on Iceberg you will need to load the bcbio module using `module load apps/gcc/5.2/bcbio/0.9.6a`. If you are using sharc then my example below should work. For non-University of Sheffielders talk to your Research Software Engineering group and ask their advice.

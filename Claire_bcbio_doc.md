@@ -107,15 +107,15 @@ We removed adaptor trimming because it wasn't necessary and actually took a lot 
 
 ### Creating batch script to run bcbio
 
-Now you need to set up your SGE file that will direct bcbio to the samples and tell it what to do with them. 
+Now you need to set up your SGE file that will direct bcbio to the samples and tell it what to do with them. Bear in mind how long this will take - **if you don't allow enough time then your job will get aborted whether you like it or not. Always over estimate. 96 hours is the most you can request on sharc**
 
 Staying in your project folder, type `nano youranalysisname.SGE`, and paste:                              
 ```
 #!/bin/bash
-#$ -l rmem=40G -l mem=40G
+#$ -l rmem=25G -l mem=25G
 #$ -pe openmp 8
 #$ -j y
-#$ -l h_rt=48:00:00
+#$ -l h_rt=96:00:00
 #$ -m bea
 #$ -M youremailaddress@whatever.something
 

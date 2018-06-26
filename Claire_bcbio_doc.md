@@ -5,7 +5,7 @@
 ## How to download sra files from NCBI using sra-toolkit
 
 1) Download appropriate sra-toolkit file from https://www.ncbi.nlm.nih.gov/sra/docs/toolkitsoft/
-2) Before you download any sra files, you have to configure the download location. Navigate to the sratoolkit folder and run `/bin/vdb-config -i`
+2) Before you download any sra files, you have to configure the download location. Navigate to the sratoolkit folder and run `bin/vdb-config -i`
 3) This brings up a slightly clunky user interface where you can set the download location ("Default Import Path"). Use the directional keys to highlight this box, or press 5. Then either navigate through the directories in the "directories:" box or left-click "Goto" to input your own path name. Press OK and then press 6, Enter, and 7 to save and quit.
 4) Navigate to folder you have just set to download files to and write small script to run sra-toolkit. 
 

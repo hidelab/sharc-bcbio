@@ -19,7 +19,7 @@
 #$ -m bea
 #$ -M youremailaddress@whatever.something
 
-path/to/sratoolkit.2.8.2-1-centos_linux64/bin/prefetch.2.8.2 thing.sra thing2.sra...thingN.sra
+path/to/sratoolkit.2.8.2-1-centos_linux64/bin/prefetch.2.8.2 SRR#####1 SRR#####2...SRRSRR#####N
 
 path/to/sratoolkit.2.8.2-1-centos_linux64/bin/fastq-dump.2.8.2 --gzip thing.sra thing2.sra...thingN.sra
 ```
@@ -33,6 +33,19 @@ The first line downloads the sra files from NCBI, and the second line converts t
 # Alternative method of converting and zipping fastq.gz files
 If you run bcbio and later get an error saying something about "unexpected end of file" "fix your fastq file" "file is truncated" or something to that effect, it is because fastq-dump with the gzip condition is currently buggy. This has been submitted as an issue on the sra github. Instead, you will need to run the following loop:
 
+If you haven't already, write a script to prefetch the sra files (you can split them and run parallel, it takes a while):
+```
+#!/bin/bash
+#$ -l rmem=4G -l mem=4G
+#$ -pe openmp 1
+#$ -j y
+#$ -l h_rt=100:00:00
+#$ -m bea
+#$ -M youremailaddress@whatever.something
+
+path/to/sratoolkit.2.8.2-1-centos_linux64/bin/prefetch.2.8.2 SRR#####1 SRR#####2...SRRSRR#####N
+```
+Then run another script to zip them (again, definitely worth splitting as this takes even longer):
 ```
 #!/bin/bash
 #$ -l rmem=40G -l mem=40G
